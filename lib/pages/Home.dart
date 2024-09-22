@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:phone_app/pages/chat.dart'; // Importa el archivo chat.dart
 
 class Home extends StatefulWidget {
   const Home({super.key, required this.title});
@@ -13,20 +12,8 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final TextEditingController _controller = TextEditingController();
-  int _selectedIndex = 0;
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-      if (index == 1) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => ChatApp()),
-        );
-      }
-    });
-  }
-
+  // ignore: unused_element
   void _launchCaller(String number) async {
     final Uri launchUri = Uri(
       scheme: 'tel',
@@ -35,6 +22,7 @@ class _HomeState extends State<Home> {
     await launchUrl(launchUri);
   }
 
+  // ignore: unused_element
   void _launchSMS(String number) async {
     final Uri launchUri = Uri(
       scheme: 'sms',
@@ -45,8 +33,10 @@ class _HomeState extends State<Home> {
   }
 
   void _launchGitHub() async {
-    const url = 'https://github.com/tu-repositorio'; // Reemplaza con la URL de tu repositorio
+    const url = 'https://github.com/Villo29/phone_app.git'; // Reemplaza con la URL de tu repositorio
+    // ignore: deprecated_member_use
     if (await canLaunch(url)) {
+      // ignore: deprecated_member_use
       await launch(url);
     } else {
       throw 'No se pudo lanzar $url';
@@ -57,7 +47,6 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -76,25 +65,6 @@ class _HomeState extends State<Home> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Perfil',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.chat),
-            label: 'Chat',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.http),
-            label: 'HTTP',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.deepPurple,
-        onTap: _onItemTapped,
-      ),
     );
   }
 }
@@ -105,6 +75,7 @@ class MyTextWidget extends StatefulWidget {
   const MyTextWidget({super.key, required this.controller});
 
   @override
+  // ignore: library_private_types_in_public_api
   _MyTextWidgetState createState() => _MyTextWidgetState();
 }
 
@@ -130,10 +101,10 @@ class _MyTextWidgetState extends State<MyTextWidget> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Image.network(
-          'https://via.placeholder.com/150', // URL de la imagen
-          width: 150,
-          height: 150,
+        const Image(
+          image: AssetImage('assets/images/villoimg.jpg'),
+          width: 350,
+          height: 350,
         ),
         const SizedBox(height: 10),
         Row(

@@ -1,18 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:phone_app/pages/Home.dart'; // Asegúrate de que la ruta sea correcta
-
-void main() {
-  runApp(ChatApp());
-}
-
-class ChatApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: ChatScreen(),
-    );
-  }
-}
 
 class ChatScreen extends StatefulWidget {
   @override
@@ -22,7 +8,6 @@ class ChatScreen extends StatefulWidget {
 class _ChatScreenState extends State<ChatScreen> {
   final List<Map<String, String>> _messages = [];
   final TextEditingController _controller = TextEditingController();
-  int _selectedIndex = 1;
 
   void _sendMessage() {
     if (_controller.text.isEmpty) return;
@@ -33,24 +18,6 @@ class _ChatScreenState extends State<ChatScreen> {
       });
       _controller.clear();
     });
-  }
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-    if (index == 0) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => Home(title: 'Home')), // Cambia a HomeScreen
-      );
-    } else if (index == 1) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => ChatScreen()),
-      );
-    }
-    // Add navigation for HTTP screen if needed
   }
 
   @override
@@ -94,25 +61,6 @@ class _ChatScreenState extends State<ChatScreen> {
             ),
           ),
         ],
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Perfil',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.chat),
-            label: 'Chat',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.http),
-            label: 'HTTP',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.deepPurple,
-        onTap: _onItemTapped,
       ),
     );
   }
