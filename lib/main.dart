@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:phone_app/pages/home.dart'; // Importa Home
-import 'package:phone_app/pages/chat.dart'; // Importa ChatScreen
+import 'package:phone_app/pages/home.dart';
+import 'package:phone_app/pages/chat.dart';
 import 'package:phone_app/pages/request.dart';
 
 void main() {
@@ -16,10 +16,10 @@ class MyApp extends StatelessWidget {
       title: 'Phone App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue, // Define el color principal azul
+        primarySwatch: Colors.blue,
         appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.blue, // Define un AppBar azul globalmente
-          centerTitle: true, // Centra el título en el AppBar
+          backgroundColor: Colors.blue,
+          centerTitle: true,
         ),
       ),
       home: const MainScreen(),
@@ -41,7 +41,7 @@ class _MainScreenState extends State<MainScreen> {
   static final List<Widget> _pages = <Widget>[
     const Home(title: 'Home Page'),
     ChatScreen(),
-    const RequestPage(), // Placeholder para la pantalla HTTP
+    const RequestPage(),
   ];
 
   void _onItemTapped(int index) {
@@ -53,7 +53,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _pages[_selectedIndex], // Muestra la página seleccionada
+      body: _pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(

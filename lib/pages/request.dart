@@ -23,9 +23,7 @@ class _RequestPageState extends State<RequestPage> {
     setState(() {
       isLoading = true;
     });
-
     final response = await http.get(Uri.parse('http://98.83.195.141:3029/api/eventos'));
-
     if (response.statusCode == 200) {
       setState(() {
         events = json.decode(response.body);
@@ -56,8 +54,7 @@ class _RequestPageState extends State<RequestPage> {
                     _eventItem(
                       event['imagen'],
                       event['nombre'],
-                      event['lugar'],
-                      event['_id'],
+                      event['lugar']
                     ),
                     const SizedBox(height: 20),
                   ],
@@ -67,7 +64,7 @@ class _RequestPageState extends State<RequestPage> {
     );
   }
 
-  Widget _eventItem(String imagePath, String name, String location, String id) {
+  Widget _eventItem(String imagePath, String name, String location) {
     return Container(
       padding: const EdgeInsets.all(10.0),
       width: double.infinity,
@@ -82,13 +79,6 @@ class _RequestPageState extends State<RequestPage> {
         children: [
           GestureDetector(
             onTap: () {
-              // Acción al hacer clic en el evento
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => BuyTicket(eventId: id),
-                ),
-              );
             },
             child: Image.network(
               imagePath,
@@ -97,12 +87,12 @@ class _RequestPageState extends State<RequestPage> {
               fit: BoxFit.cover,
             ),
           ),
-          const SizedBox(height: 8.0),
+          const SizedBox(height: 10.0),
           Text(
             name,
-            style: const TextStyle(color: Colors.blue),
+            style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
           ),
-          const SizedBox(height: 4.0),
+          const SizedBox(height: 7.0),
           Text(location),
         ],
       ),
