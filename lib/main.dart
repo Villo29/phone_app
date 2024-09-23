@@ -70,7 +70,7 @@ class _MainScreenState extends State<MainScreen> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: const Color.fromARGB(255, 54, 231, 31),
+        selectedItemColor: Color.fromARGB(255, 232, 27, 27),
         onTap: _onItemTapped,
       ),
     );
